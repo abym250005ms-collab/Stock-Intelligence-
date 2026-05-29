@@ -321,34 +321,59 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const NSE_STOCKS = [
-  { sym:'RELIANCE', name:'Reliance Industries', price:2941, chg:1.2, sector:'Energy', mcap:'19.8L Cr', vol:'High' },
-  { sym:'TCS', name:'Tata Consultancy Services', price:3612, chg:-0.4, sector:'IT', mcap:'13.1L Cr', vol:'Moderate' },
-  { sym:'HDFCBANK', name:'HDFC Bank', price:1782, chg:0.7, sector:'Banking', mcap:'13.5L Cr', vol:'Moderate' },
-  { sym:'INFY', name:'Infosys', price:1524, chg:-0.9, sector:'IT', mcap:'6.3L Cr', vol:'High' },
-  { sym:'ICICIBANK', name:'ICICI Bank', price:1298, chg:1.4, sector:'Banking', mcap:'9.1L Cr', vol:'High' },
-  { sym:'HINDUNILVR', name:'Hindustan Unilever', price:2456, chg:0.3, sector:'FMCG', mcap:'5.8L Cr', vol:'Low' },
-  { sym:'SBIN', name:'State Bank of India', price:812, chg:2.1, sector:'Banking', mcap:'7.2L Cr', vol:'Very High' },
+  { sym:'ADANIENT', name:'Adani Enterprises', price:2634, chg:-0.7, sector:'Conglomerate', mcap:'3.0L Cr', vol:'High' },
+  { sym:'ADANIPORTS', name:'Adani Ports & SEZ', price:1154, chg:0.5, sector:'Ports', mcap:'2.8L Cr', vol:'Moderate' },
+  { sym:'APOLLOHOSP', name:'Apollo Hospitals', price:7234, chg:1.2, sector:'Healthcare', mcap:'2.4L Cr', vol:'Moderate' },
+  { sym:'ASIANPAINT', name:'Asian Paints', price:2312, chg:-0.5, sector:'Paints', mcap:'2.2L Cr', vol:'Low' },
+  { sym:'AXISBANK', name:'Axis Bank', price:1124, chg:0.4, sector:'Banking', mcap:'3.5L Cr', vol:'Moderate' },
+  { sym:'BAJAJ-AUTO', name:'Bajaj Auto', price:4156, chg:0.9, sector:'Auto', mcap:'1.9L Cr', vol:'Moderate' },
+  { sym:'BAJAJFINSV', name:'Bajaj Finserv', price:1654, chg:1.1, sector:'Finance', mcap:'2.1L Cr', vol:'High' },
+  { sym:'BAJFINANCE', name:'Bajaj Finance', price:6842, chg:1.6, sector:'Finance', mcap:'4.1L Cr', vol:'High' },
+  { sym:'BEL', name:'Bharat Electronics', price:289, chg:0.6, sector:'Defense', mcap:'1.8L Cr', vol:'Moderate' },
   { sym:'BHARTIARTL', name:'Bharti Airtel', price:1687, chg:0.6, sector:'Telecom', mcap:'9.9L Cr', vol:'Moderate' },
+  { sym:'BPCL', name:'BPCL', price:412, chg:0.8, sector:'Energy', mcap:'2.0L Cr', vol:'Moderate' },
+  { sym:'BRITANNIA', name:'Britannia', price:4521, chg:0.3, sector:'FMCG', mcap:'2.3L Cr', vol:'Low' },
+  { sym:'CIPLA', name:'Cipla', price:1389, chg:-0.2, sector:'Pharma', mcap:'2.6L Cr', vol:'Low' },
+  { sym:'COALINDIA', name:'Coal India', price:498, chg:0.7, sector:'Energy', mcap:'2.5L Cr', vol:'Moderate' },
+  { sym:'DIVISLAB', name:'Divi\'s Laboratories', price:6234, chg:0.4, sector:'Pharma', mcap:'2.8L Cr', vol:'Low' },
+  { sym:'DRREDDY', name:'Dr. Reddy\'s Laboratories', price:7856, chg:-0.3, sector:'Pharma', mcap:'3.1L Cr', vol:'Moderate' },
+  { sym:'EICHERMOT', name:'Eicher Motors', price:3654, chg:0.5, sector:'Auto', mcap:'1.5L Cr', vol:'Low' },
+  { sym:'GRASIM', name:'Grasim Industries', price:2987, chg:0.8, sector:'Cement', mcap:'2.4L Cr', vol:'Moderate' },
+  { sym:'HCLTECH', name:'HCL Technologies', price:1623, chg:-0.3, sector:'IT', mcap:'4.4L Cr', vol:'Moderate' },
+  { sym:'HDFCBANK', name:'HDFC Bank', price:1782, chg:0.7, sector:'Banking', mcap:'13.5L Cr', vol:'Moderate' },
+  { sym:'HDFCLIFE', name:'HDFC Life Insurance', price:654, chg:0.9, sector:'Insurance', mcap:'1.9L Cr', vol:'Low' },
+  { sym:'HEROMOTOCO', name:'Hero MotoCorp', price:4234, chg:-0.1, sector:'Auto', mcap:'2.2L Cr', vol:'High' },
+  { sym:'HINDALCO', name:'Hindalco Industries', price:734, chg:1.2, sector:'Metals', mcap:'2.6L Cr', vol:'Moderate' },
+  { sym:'HINDUNILVR', name:'Hindustan Unilever', price:2456, chg:0.3, sector:'FMCG', mcap:'5.8L Cr', vol:'Low' },
+  { sym:'ICICIBANK', name:'ICICI Bank', price:1298, chg:1.4, sector:'Banking', mcap:'9.1L Cr', vol:'High' },
+  { sym:'INDUSINDBK', name:'IndusInd Bank', price:987, chg:0.5, sector:'Banking', mcap:'1.7L Cr', vol:'Moderate' },
+  { sym:'INFY', name:'Infosys', price:1524, chg:-0.9, sector:'IT', mcap:'6.3L Cr', vol:'High' },
   { sym:'ITC', name:'ITC Limited', price:432, chg:-0.2, sector:'FMCG', mcap:'5.4L Cr', vol:'Low' },
+  { sym:'JSWSTEEL', name:'JSW Steel', price:876, chg:0.6, sector:'Steel', mcap:'2.2L Cr', vol:'Moderate' },
   { sym:'KOTAKBANK', name:'Kotak Mahindra Bank', price:1956, chg:0.9, sector:'Banking', mcap:'3.9L Cr', vol:'Moderate' },
   { sym:'LT', name:'Larsen & Toubro', price:3421, chg:1.7, sector:'Infra', mcap:'4.7L Cr', vol:'High' },
-  { sym:'AXISBANK', name:'Axis Bank', price:1124, chg:0.4, sector:'Banking', mcap:'3.5L Cr', vol:'Moderate' },
-  { sym:'WIPRO', name:'Wipro', price:487, chg:-1.1, sector:'IT', mcap:'2.5L Cr', vol:'Low' },
+  { sym:'M&M', name:'Mahindra & Mahindra', price:2345, chg:0.4, sector:'Auto', mcap:'3.4L Cr', vol:'Moderate' },
   { sym:'MARUTI', name:'Maruti Suzuki', price:12840, chg:0.8, sector:'Auto', mcap:'3.9L Cr', vol:'Moderate' },
-  { sym:'ASIANPAINT', name:'Asian Paints', price:2312, chg:-0.5, sector:'Paints', mcap:'2.2L Cr', vol:'Low' },
-  { sym:'TITAN', name:'Titan Company', price:3187, chg:1.3, sector:'Consumer', mcap:'2.8L Cr', vol:'High' },
-  { sym:'SUNPHARMA', name:'Sun Pharmaceutical', price:1876, chg:0.6, sector:'Pharma', mcap:'4.5L Cr', vol:'Moderate' },
-  { sym:'ULTRACEMCO', name:'UltraTech Cement', price:10240, chg:1.1, sector:'Cement', mcap:'2.9L Cr', vol:'Moderate' },
-  { sym:'NTPC', name:'NTPC Limited', price:378, chg:0.9, sector:'Power', mcap:'3.7L Cr', vol:'High' },
-  { sym:'POWERGRID', name:'Power Grid Corp', price:312, chg:0.3, sector:'Power', mcap:'2.9L Cr', vol:'Low' },
-  { sym:'BAJFINANCE', name:'Bajaj Finance', price:6842, chg:1.6, sector:'Finance', mcap:'4.1L Cr', vol:'High' },
-  { sym:'ADANIENT', name:'Adani Enterprises', price:2634, chg:-0.7, sector:'Conglomerate', mcap:'3.0L Cr', vol:'High' },
-  { sym:'ONGC', name:'Oil & Natural Gas Corp', price:267, chg:1.8, sector:'Energy', mcap:'3.4L Cr', vol:'Very High' },
   { sym:'NESTLEIND', name:'Nestle India', price:2187, chg:0.2, sector:'FMCG', mcap:'2.1L Cr', vol:'Low' },
-  { sym:'HCLTECH', name:'HCL Technologies', price:1623, chg:-0.3, sector:'IT', mcap:'4.4L Cr', vol:'Moderate' },
+  { sym:'NTPC', name:'NTPC Limited', price:378, chg:0.9, sector:'Power', mcap:'3.7L Cr', vol:'High' },
+  { sym:'ONGC', name:'Oil & Natural Gas Corp', price:267, chg:1.8, sector:'Energy', mcap:'3.4L Cr', vol:'Very High' },
+  { sym:'POWERGRID', name:'Power Grid Corp', price:312, chg:0.3, sector:'Power', mcap:'2.9L Cr', vol:'Low' },
+  { sym:'RELIANCE', name:'Reliance Industries', price:2941, chg:1.2, sector:'Energy', mcap:'19.8L Cr', vol:'High' },
+  { sym:'SBILIFE', name:'SBI Life Insurance', price:1456, chg:0.7, sector:'Insurance', mcap:'2.1L Cr', vol:'Moderate' },
+  { sym:'SBIN', name:'State Bank of India', price:812, chg:2.1, sector:'Banking', mcap:'7.2L Cr', vol:'Very High' },
+  { sym:'SUNPHARMA', name:'Sun Pharmaceutical', price:1876, chg:0.6, sector:'Pharma', mcap:'4.5L Cr', vol:'Moderate' },
+  { sym:'TATACONSUM', name:'Tata Consumer Products', price:876, chg:0.4, sector:'FMCG', mcap:'1.6L Cr', vol:'Low' },
+  { sym:'TCS', name:'Tata Consultancy Services', price:3612, chg:-0.4, sector:'IT', mcap:'13.1L Cr', vol:'Moderate' },
+  { sym:'TATAMOTORS', name:'Tata Motors', price:654, chg:-0.3, sector:'Auto', mcap:'1.8L Cr', vol:'Moderate' },
+  { sym:'TATASTEEL', name:'Tata Steel', price:145, chg:0.8, sector:'Steel', mcap:'1.9L Cr', vol:'Moderate' },
+  { sym:'TECHM', name:'Tech Mahindra', price:1234, chg:-0.5, sector:'IT', mcap:'2.4L Cr', vol:'Moderate' },
+  { sym:'TITAN', name:'Titan Company', price:3187, chg:1.3, sector:'Consumer', mcap:'2.8L Cr', vol:'High' },
+  { sym:'TRENT', name:'Trent', price:6234, chg:1.1, sector:'Retail', mcap:'1.9L Cr', vol:'Moderate' },
+  { sym:'ULTRACEMCO', name:'UltraTech Cement', price:10240, chg:1.1, sector:'Cement', mcap:'2.9L Cr', vol:'Moderate' },
+  { sym:'WIPRO', name:'Wipro', price:487, chg:-1.1, sector:'IT', mcap:'2.5L Cr', vol:'Low' },
 ];
 
-const RECOS = ['RELIANCE','ICICIBANK','TITAN','BAJFINANCE','NTPC','BHARTIARTL','LT','SBIN'];
+const RECOS = ['RELIANCE','ICICIBANK','TITAN','BAJFINANCE','NTPC','BHARTIARTL','LT','SBIN','TCS','HDFCBANK'];
 const INDICES = [
   { name:'NIFTY 50', val:22487, chg:0.74 },
   { name:'SENSEX', val:74000, chg:0.69 },
@@ -404,7 +429,7 @@ function filterStocks(q) {
   if (!q || q.length < 1) { dd.innerHTML = ''; return; }
   const filtered = NSE_STOCKS.filter(s =>
     s.sym.startsWith(q.toUpperCase()) || s.name.toLowerCase().includes(q.toLowerCase())
-  ).slice(0, 7);
+  ).slice(0, 10);
   if (!filtered.length) { dd.innerHTML = ''; return; }
   dd.innerHTML = '<div class="dropdown">' + filtered.map(s => `
     <div class="dd-item" onclick="selectStock('${s.sym}')">
@@ -587,6 +612,7 @@ function renderDetail(stock) {
 function renderRecos() {
   document.getElementById('recos-list').innerHTML = RECOS.map(sym => {
     const s = NSE_STOCKS.find(x => x.sym === sym);
+    if (!s) return '';
     const sig = getSignal(s);
     const pc = sig==='BUY'?'pill-buy':sig==='SELL'?'pill-sell':'pill-hold';
     return `<div class="reco-card" onclick="goToStock('${s.sym}')">
