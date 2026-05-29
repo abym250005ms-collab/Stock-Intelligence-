@@ -1,0 +1,24 @@
+{
+  "name": "nse-stock-intelligence",
+  "version": "1.0.0",
+  "description": "NSE Stock Intelligence - Real-time stock analysis for Indian markets",
+  "main": "api/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node api/server.js",
+    "dev": "node --watch api/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "keywords": ["nse", "stocks", "trading", "india", "finance"],
+  "author": "Stock Intelligence Team",
+  "license": "MIT"
+}
