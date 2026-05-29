@@ -121,6 +121,58 @@ function generateMockRecommendations() {
 
 // API Routes
 
+// Root endpoint - API documentation
+app.get('/', (req, res) => {
+  res.json({
+    status: '✅ NSE Stock Intelligence API is LIVE',
+    version: '1.0.0',
+    description: 'Analyse stocks for future trends. SELL/BUY',
+    baseUrl: 'https://stock-intelligence-ag0e.onrender.com/api',
+    endpoints: {
+      search: {
+        method: 'GET',
+        url: '/api/search?q=RELIANCE',
+        description: 'Search stocks by symbol or name'
+      },
+      quote: {
+        method: 'GET',
+        url: '/api/quote/:symbol',
+        description: 'Get stock quote with indicators',
+        example: '/api/quote/RELIANCE'
+      },
+      multipleQuotes: {
+        method: 'POST',
+        url: '/api/quotes',
+        description: 'Get multiple stock quotes',
+        body: { symbols: ['RELIANCE', 'TCS', 'INFY'] }
+      },
+      chart: {
+        method: 'GET',
+        url: '/api/chart/:symbol?period=1M',
+        description: 'Get chart data (1W, 1M, 3M, 6M)',
+        example: '/api/chart/RELIANCE?period=1M'
+      },
+      recommendations: {
+        method: 'GET',
+        url: '/api/recommendations',
+        description: 'Get stock recommendations with BUY/SELL/HOLD signals'
+      },
+      market: {
+        method: 'GET',
+        url: '/api/market',
+        description: 'Get market overview (indices and sector performance)'
+      },
+      health: {
+        method: 'GET',
+        url: '/api/health',
+        description: 'Health check endpoint'
+      }
+    },
+    nifty50Count: NIFTY_50.length,
+    timestamp: new Date().toISOString()
+  });
+});
+
 // 1. Search stocks
 app.get('/api/search', (req, res) => {
   const { q } = req.query;
